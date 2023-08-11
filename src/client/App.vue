@@ -6,10 +6,10 @@
       <button type="submit">Поиск</button>
     </form>
 
-    <ApiLinks
+    <!-- <ApiLinks
       :currentWeatherLink="currentWeatherLink"
       :forecastWeatherLink="forecastWeatherLink"
-    />
+    /> -->
     <!-- <JsonData
       :currentWeatherJSON:="currentWeatherJSON"
       :forecastWeatherJSON="forecastWeatherJSON"
@@ -107,8 +107,10 @@ export default {
   },
   methods: {
     fetchData() {
-      this.currentWeatherLink = `https://api.openweathermap.org/data/2.5/weather?q=${this.cityName}&units=metric&lang=ru&appid=c46600730f35ad4e275560d72ee90634`;
-      this.forecastWeatherLink = `https://api.openweathermap.org/data/2.5/forecast?q=${this.cityName}&units=metric&lang=ru&appid=c46600730f35ad4e275560d72ee90634`;
+      const API_KEY = process.env.API_KEY;
+
+      this.currentWeatherLink = `https://api.openweathermap.org/data/2.5/weather?q=${this.cityName}&units=metric&lang=ru&appid=${API_KEY}`;
+      this.forecastWeatherLink = `https://api.openweathermap.org/data/2.5/forecast?q=${this.cityName}&units=metric&lang=ru&appid=${API_KEY}`;
 
       const currentWeatherRequest = axios.get(this.currentWeatherLink);
       const forecastWeatherRequest = axios.get(this.forecastWeatherLink);
