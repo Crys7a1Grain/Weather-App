@@ -15,12 +15,6 @@ jobs:
       #API_KEY: ${{secrets.OPENWEATHER_API_KEY}}
       #API_KEY: ${{vars.OPENWEATHER_API_KEY}}
     steps:
-      - name: Echo key.
-        run: echo API_KEY=${{env.API_KEY}} > ./.env 
-
-      - name: Log key.
-        run: cat .env
-        
       - name: Checkout repository
         uses: actions/checkout@v2
 
