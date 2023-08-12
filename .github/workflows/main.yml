@@ -32,7 +32,8 @@ jobs:
       - name: Build
         run: |
           pwd
-          echo API_KEY=${{vars.OPENWEATHER_API_KEY}} > /home/runner/work/Weather-App/Weather-App/.env
+          touch /home/runner/work/Weather-App/Weather-App/.env
+          echo API_KEY=${{vars.OPENWEATHER_API_KEY}} >> /home/runner/work/Weather-App/Weather-App/.env
           ls
           npm run build
 
