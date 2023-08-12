@@ -14,7 +14,10 @@ jobs:
     steps:
       - name: Echo key.
         run: echo "API_KEY=${{env.API_KEY}}" > ./.env 
-    
+
+      - name: Log key.
+        run: cat .env
+        
       - name: Checkout repository
         uses: actions/checkout@v2
 
