@@ -107,7 +107,7 @@ export default {
   },
   methods: {
     fetchData() {
-      const API_KEY = process.env.OPENWEATHER_API_KEY;
+      const API_KEY = process.env.API_KEY;
 
       this.currentWeatherLink = `https://api.openweathermap.org/data/2.5/weather?q=${this.cityName}&units=metric&lang=ru&appid=${API_KEY}`;
       this.forecastWeatherLink = `https://api.openweathermap.org/data/2.5/forecast?q=${this.cityName}&units=metric&lang=ru&appid=${API_KEY}`;
