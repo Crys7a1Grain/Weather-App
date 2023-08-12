@@ -32,9 +32,9 @@ jobs:
       - name: Build
         run: |
           pwd
-          touch /home/runner/work/Weather-App/Weather-App/.env
-          echo API_KEY=${{vars.OPENWEATHER_API_KEY}} >> /home/runner/work/Weather-App/Weather-App/.env
+          echo API_KEY=${{vars.OPENWEATHER_API_KEY}} > .env
           ls
+          cat .env
           npm run build
 
       - name: Deploy to GitHub Pages
