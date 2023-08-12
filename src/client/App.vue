@@ -76,6 +76,7 @@ import ApiLinks from './components/ApiLinks.vue';
 import JsonData from './components/JsonData.vue';
 
 const API_KEY = process.env.API_KEY;
+console.log(API_KEY);
 
 export default {
   components: {
