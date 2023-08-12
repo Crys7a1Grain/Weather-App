@@ -33,6 +33,7 @@ jobs:
         run: |
           pwd
           echo API_KEY=${{vars.OPENWEATHER_API_KEY}} > .env
+          ls
           npm run build
 
       - name: Deploy to GitHub Pages
