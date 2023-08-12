@@ -74,6 +74,8 @@ import axios from 'axios';
 import ApiLinks from './components/ApiLinks.vue';
 import JsonData from './components/JsonData.vue';
 
+const API_KEY = process.env.API_KEY;  
+
 export default {
   components: {
     ApiLinks,
@@ -107,8 +109,6 @@ export default {
   },
   methods: {
     fetchData() {
-      const API_KEY = process.env.API_KEY;
-
       this.currentWeatherLink = `https://api.openweathermap.org/data/2.5/weather?q=${this.cityName}&units=metric&lang=ru&appid=${API_KEY}`;
       this.forecastWeatherLink = `https://api.openweathermap.org/data/2.5/forecast?q=${this.cityName}&units=metric&lang=ru&appid=${API_KEY}`;
 
