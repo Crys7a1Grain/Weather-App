@@ -71,12 +71,11 @@
 
 <script>
 import axios from 'axios';
-import dotenv from 'dotenv';
+import 'dotenv/config';
 import ApiLinks from './components/ApiLinks.vue';
 import JsonData from './components/JsonData.vue';
 
-dotenv.config();
-const API_KEY = process.env.API_KEY;  
+const API_KEY = process.env.API_KEY;
 
 export default {
   components: {
