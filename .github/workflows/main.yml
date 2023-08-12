@@ -28,6 +28,7 @@ jobs:
 
       - name: Install dotenv
         run: npm install dotenv
+        
       - name: Build
         run: |
           npm run build
