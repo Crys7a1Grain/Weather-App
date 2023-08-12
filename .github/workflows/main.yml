@@ -10,9 +10,10 @@ jobs:
     runs-on: ubuntu-latest
     env:
       API_KEY: ${{secrets.OPENWEATHER_API_KEY}}
+      KEY: ${{vars.OPENWEATHER_API_KEY}}
     steps:
       - name: Echo key.
-        run: echo ${{env.API_KEY}}
+        run: echo ${{env.KEY}}
     
       - name: Checkout repository
         uses: actions/checkout@v2
