@@ -1,5 +1,7 @@
 <template>
   <div>
+    <Weatherify />
+
     <form @submit.prevent="fetchData">
       <div>Введите название города:</div>
       <input type="text" v-model="cityName" required />
@@ -57,12 +59,12 @@
           "
           alt=""
         />
-        <p>Облачность: {{forecast.clouds.all}} %</p>
-        <p>Скорость ветра: {{forecast.wind.speed}} м/c</p>
-        <p>Градус ветра: {{forecast.wind.deg}}</p>
-        <p>Порывы ветра: {{forecast.wind.gust}} м/c</p>
-        <p>Видимость: {{forecast.visibility}}м</p>
-        <p>Вероятность осадков: {{forecast.pop * 100}}%</p>
+        <p>Облачность: {{ forecast.clouds.all }} %</p>
+        <p>Скорость ветра: {{ forecast.wind.speed }} м/c</p>
+        <p>Градус ветра: {{ forecast.wind.deg }}</p>
+        <p>Порывы ветра: {{ forecast.wind.gust }} м/c</p>
+        <p>Видимость: {{ forecast.visibility }}м</p>
+        <p>Вероятность осадков: {{ forecast.pop * 100 }}%</p>
         <p>-----------------------------------------------</p>
       </div>
     </div>
@@ -71,17 +73,27 @@
 
 <script>
 import axios from 'axios';
-import 'dotenv/config';
+import Weatherify from './components/Weatherify.vue';
 import ApiLinks from './components/ApiLinks.vue';
 import JsonData from './components/JsonData.vue';
 
-const API_KEY = process.env.API_KEY;
-console.log(API_KEY);
+let API_KEY;
+
+if (typeof process !== 'undefined') {
+  // Код выполняется на сервере (например, в среде Node.js)
+  API_KEY = process.env.OPENWEATHER_API_KEY;
+  //console.log('API_KEY: ' + API_KEY);
+} else if (typeof import.meta !== 'undefined') {
+  // Код выполняется в браузере
+  API_KEY = import.meta.env.VITE_OPENWEATHER_API_KEY;
+  //console.log('API_KEY: ' + API_KEY);
+}
 
 export default {
   components: {
     ApiLinks,
     JsonData,
+    Weatherify,
   },
   data() {
     return {
@@ -135,15 +147,15 @@ export default {
           this.windGust = currentWeatherData.wind.gust;
           this.clouds = currentWeatherData.clouds.all;
           this.updateTime = new Date(
-            currentWeatherData.dt * 1000
+            currentWeatherData.dt * 1000,
           ).toLocaleTimeString();
           this.description = currentWeatherData.weather[0].description;
           this.icon = currentWeatherData.weather[0].icon;
           this.sunrise = new Date(
-            currentWeatherData.sys.sunrise * 1000
+            currentWeatherData.sys.sunrise * 1000,
           ).toLocaleTimeString();
           this.sunset = new Date(
-            currentWeatherData.sys.sunset * 1000
+            currentWeatherData.sys.sunset * 1000,
           ).toLocaleTimeString();
 
           this.forecastWeatherData = responses[1].data.list;
@@ -173,11 +185,21 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 @import url('https://fonts.googleapis.com/css2?family=League+Gothic&family=Old+Standard+TT&family=Ubuntu:wght@400;500;700&display=swap');
+
+:root {
+  --light-pink: #ead2ac;
+  --blue: #9cafb7;
+  --black: #000000;
+}
 
 * {
   font-family: 'League Gothic', sans-serif;
   font-family: 'Old Standard TT', serif;
+}
+.container {
+  width: 60%;
+  margin: auto;
 }
 </style>
