@@ -20,15 +20,14 @@ jobs:
         with:
           node-version: 18.9.0
 
-      - name: Install dependencies
-        run: npm install
+      - name: Install Vite globally
+        run: npm install -g vite
 
-      - name: Install dotenv
-        run: npm install dotenv
-        
-      - name: Build
-        run: VITE_OPENWEATHER_API_KEY=${{ secrets.OPENWEATHER_API_KEY }} vite build
-        
+      - name: Install dependencies and build
+        run: |
+          npm install
+          VITE_OPENWEATHER_API_KEY=${{ secrets.OPENWEATHER_API_KEY }} npm run build
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:

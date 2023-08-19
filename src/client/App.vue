@@ -95,6 +95,7 @@ export default {
     JsonData,
     Weatherify,
   },
+
   data() {
     return {
       cityName: '',
@@ -121,6 +122,7 @@ export default {
       sunset: null,
     };
   },
+
   methods: {
     fetchData() {
       this.currentWeatherLink = `https://api.openweathermap.org/data/2.5/weather?q=${this.cityName}&units=metric&lang=ru&appid=${API_KEY}`;
@@ -170,6 +172,7 @@ export default {
           this.humidity = null;
         });
     },
+    
     formatDate(unixTimestamp) {
       const dateTime = new Date(unixTimestamp * 1000);
       const datePart = dateTime.toLocaleDateString();
@@ -177,6 +180,7 @@ export default {
       return `${datePart} ${timePart}`;
     },
   },
+
   computed: {
     getIcon() {
       return `https://openweathermap.org/img/wn/${this.icon}@2x.png`;
