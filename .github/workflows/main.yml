@@ -17,6 +17,9 @@ jobs:
         with:
           node-version: 18.9.0
 
+      - name: Install Vite globally
+        run: npm install -g vite
+
       - name: Install dependencies and build
         run: |
           npm install
